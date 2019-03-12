@@ -1,12 +1,12 @@
 
 $(document).ready(function () {
-    $('.headline').hide();
+    findEventsByArtist('angerfist');
+    $('.headline-artist').html("angerfist");
 })
 
 //search and replace spaces with dashes and tolowercase, put name in headline
-$('#searchbutton').keyup(function(){
+$('#searchbutton').click(function(){
     var artisttext = $('#searchartist').val();
-    $('.headline').show();
     $('.headline-artist').html(artisttext);
     artistModified = artisttext.replace(/\s+/g, '-').toLowerCase(); //not recessarily, but useful for the worst case
     console.log("text: ",artistModified);
@@ -47,7 +47,13 @@ var findEventsByArtist = function (artistname) {
             var eventUri = eventArray[i].uri;
             var eventType = eventArray[i].type;
             var eventDate = eventArray[i].start.date;
-            var list = $('<li>').addClass('bar').html('<p class="name">' + eventName + ', ' + eventDate + '</p>' + eventLocation + '<br>' + "Type: " + eventType + '<br>' + '<a href=' + eventUri + ' target="_blank">more infos');
+
+            //change date format
+            var startDate = new Date(eventDate);
+            var startEvent = (startDate.getDate()  + "." + (startDate.getMonth() + 1)+ "." + startDate.getFullYear());
+        
+            //appends list with the events
+            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p>' + eventLocation + '<br>' + "Type: " + eventType + '<br>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos');
             eventlist.append(list);
         }
     })

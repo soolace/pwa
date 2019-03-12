@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>upcoming events</title>
+    <link rel="manifest" href="css/manifest.json">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="wrapper">
         <div>
                 <h3 class="first-headline">Search for upcoming Events</h3>              
-                <input type="text" id="searchartist" placeholder="artist"><button id="searchbutton">search</button>
+                <input type="text" id="searchartist" value="angerfist"><button id="searchbutton">search</button>
                 <h3 class="headline">Upcoming Events of <span class="headline-artist"></span></h3>
                 <ul class="events"></ul>
             </div>
+        </div>
+        <footer><img src="img/attribution-assets/by-sk/by-songkick-pink.png"></footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/pwa.js"></script>
