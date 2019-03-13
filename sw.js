@@ -16,7 +16,6 @@ this.addEventListener('install', function (event) {
                 })
         })
     );
-    console.log("is installed");
 });
 
 this.addEventListener('fetch', function (event) {
@@ -28,14 +27,3 @@ this.addEventListener('fetch', function (event) {
         })
     );
 });
-
-/*this.addEventListener('fetch', event => {
-   console.log(event.request.url),
-    event.respondWith(
-      caches.open('v2')
-        .then(cache => cache.match(event.request, {ignoreSearch: true}))
-        .then(response => {
-        return response || fetch(event.request);
-      })
-    );
-  });*/
