@@ -8,10 +8,12 @@
     "theme_color": "#F31C56",
     "icons": [
       {
-        "src": "../img/sk-badge-pink.png",
+        "src": "img/sk-badge-pink.png",
         "sizes": "512x512",
         "type": "image/png"
       }
     ]
   } 
 
+
+  

@@ -59,7 +59,7 @@ var findEventsByArtist = function (artistname) {
 }
 
 if ('serviceWorker' in navigator){
-    navigator.serviceWorker.register('js/sw.js', {scope: 'js/sw.js'}).then(function(reg){
+    navigator.serviceWorker.register('/pwa/sw.js', {scope: '/pwa/'}).then(function(reg){
         //registration successfull
         console.log('SW registered! Scope is ', reg.scope);
     }).catch(function(err){
