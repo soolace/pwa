@@ -1,6 +1,6 @@
 this.addEventListener('install', function (event) {
     event.waitUntil(
-        caches.open('v2').then(function (cache) {
+        caches.open('pwacache').then(function (cache) {
             console.log("install successfull");
             return cache.addAll([
                     '/',
@@ -27,3 +27,20 @@ this.addEventListener('fetch', function (event) {
         })
     );
 });
+
+
+//push notification
+this.addEventListener('notificationclick', function(e) {
+    var notification = e.notification;
+    var action = e.action;
+  
+    if (action === 'close') {
+      notification.close();
+      console.log("push close");
+    } else {
+      clients.openWindow('https://www.songkick.com');
+      console.log("go to website");
+      notification.close();
+    }
+  });
+  

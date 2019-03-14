@@ -62,9 +62,40 @@ if ('serviceWorker' in navigator){
     navigator.serviceWorker.register('/pwa/sw.js', {scope: '/pwa/'}).then(function(reg){
         //registration successfull
         console.log('SW registered! Scope is ', reg.scope);
+        displayNotification();
     }).catch(function(err){
         //registration failed
         console.log('registration failed with ', +err);
     })
 }
+
+if ('Notification' in window && navigator.serviceWorker) {
+Notification.requestPermission(function(status){
+    console.log("Notification permission status:", status);
+})
+}
+
+//properties of the push notification
+function displayNotification() {
+    if (Notification.permission == 'granted') {
+      navigator.serviceWorker.getRegistration().then(function(reg) {
+        var options = {
+          body: 'Check out the latest News',
+          icon: 'img/sk-badge-pink.png',
+          vibrate: [100, 50, 100],
+          data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1
+         },
+         actions: [
+         {action: 'explore', title: 'go directly to the website',
+           icon: 'img/sk-badge-pink.png'},
+         {action: 'close', title: 'Close notification',
+           icon: 'img/sk-badge-pink.png'},
+      ]
+        };
+        reg.showNotification('Dont miss it!', options);
+      });
+    }
+  }
 
