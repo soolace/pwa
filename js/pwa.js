@@ -1,3 +1,5 @@
+var searchedArray = [];
+
 $(document).ready(function () {
     findEventsByArtist('angerfist');
     $('.headline-artist').html("angerfist");
@@ -9,6 +11,8 @@ $('#searchbutton').click(function () {
     $('.headline-artist').html(artisttext);
     artistModified = artisttext.replace(/\s+/g, '-').toLowerCase(); //not recessarily, but useful for the worst case
     console.log("text: ", artistModified);
+    searchedArray.push(artisttext);
+    console.log("array of searched artists: ",searchedArray); //instead of this, i have to put it in a local storage
     findEventsByArtist(artistModified);
 })
 
