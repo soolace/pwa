@@ -2,9 +2,11 @@
 
 
 html, body{
+    position: relative;
     font-family: 'Hind Siliguri', sans-serif;
     font-size: 16px;
     padding: 5px;
+    background-color: #F31C56;
 }
 
 .wrapper{
@@ -12,13 +14,38 @@ html, body{
     height: 100%;
 }
 
+.first-headline{
+    color: white;
+    margin-top: 0;
+}
+
+.headline{
+    color: black;
+}
+
+p{
+    color: white;
+}
+
+
 input[type="text"]{
     font-size: inherit;
 }
 
-.events{
+.events, .last-searched{
     list-style-type: none;
     padding-left: 0;
+}
+
+.last-searched{
+    width: auto;
+    padding: 10px 0px;
+    background-color: #F31C56;
+}
+
+.last-searched li p{
+    margin: 0;
+    cursor: pointer;
 }
 
 .name{
@@ -27,29 +54,72 @@ input[type="text"]{
 }
 
 .link{
-    color: #F31C56;
+    color: black;
     text-decoration: none;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.examples{
+    text-decoration: underline;
 }
 
 #searchartist{
     border-radius: 4px;
     border: 2px solid #F31C56;
     padding: 3px 5px;
+    margin-right: 5px;
+    width: 18ch;
+}
+
+.searchline{
+    height: auto;
+    display: inline-block;
+    width: 100%;
 }
 
 #searchbutton{
     border-radius: 4px;
-    border: 2px solid #F31C56;
+    border: 2px solid white;
     padding: 3px 5px;
-    margin-left: 5px;
-    background-color: #F31C56;
-    font-size: 16px;
+    background-color: white;
+    font-size: 14px;
+    margin-left: 2px;
     font-weight: bold;
+    cursor: pointer;
 }
 
+#lasts{
+    cursor: pointer;
+    float: right;
+    margin-left: 12px;
+    margin-top: 3px;
+}
+
+.content{
+    min-height: 70vh;
+}
 
 footer img{
     max-width: 100px;
-    margin: 20px 0px 0px;
 }
+
+
+@media only screen and (min-width: 900px) {
+    body, html{
+        padding: 0 5px;
+        margin: 0;
+        background-image: url(../img/background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .wrapper{
+        max-width: 950px;
+        margin: 0 auto;
+        min-height: 100vh;
+        background-color: #F31C56;
+        padding: 1rem 30px;
+    }
+
+  }
