@@ -10,7 +10,6 @@ this.addEventListener('install', function (event) {
                     '/pwa/js/pwa.js',
                     '/pwa/js/jquery-3.3.1.min.js',
                     '/pwa/img/by-songkick-pink.png',
-                    '/pwa/img/history.png',
                     '/pwa/img/powered-by-songkick-white.png',
                     '/pwa/img/sk-badge-pink.png',
                     '/pwa/img/bg.jpg',
