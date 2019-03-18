@@ -18,13 +18,14 @@ $('#searchbutton').click(function () {
     }
     localStorage.setItem('items', JSON.stringify(searchedArray));
     //show list with the last 5 searched names
-    var searchedNames = $('<li>').addClass('selectedHistory').html('<p>' + artisttext + '</p>');
+    var searchedNames = $('<li>').addClass('activeHistory').html('<p>' + artisttext + '</p>');
     searchedItems.prepend(searchedNames);
     $('.last-searched li').slice(5).hide();
     $('.last-searched').hide();
     $('.beginningtext').hide();
 
     findEventsByArtist(artistModified);
+    getActiveHistory();
 })
 
 //creates the list when reload to see the history from localstorage
@@ -41,10 +42,17 @@ $('#lasts').click(function () {
 //when a element from history is clicked, the searchfield will be filled with his name again
 $('.selectedHistory').click(function () {
     var choosed = $(this).text();
-    console.log("ok, ", choosed);
     $('#searchartist').val(choosed);
     $('.last-searched').hide();
 })
+
+var getActiveHistory = function(){
+$('.activeHistory').click(function () {
+    var choosed2 = $(this).text();
+    $('#searchartist').val(choosed2);
+    $('.last-searched').hide();
+})
+}
 
 //fetch to get the data
 var findEventsByArtist = function (artistname) {
@@ -83,18 +91,18 @@ var findEventsByArtist = function (artistname) {
             var eventUri = eventArray[i].uri;
             var eventType = eventArray[i].type;
             var eventDate = eventArray[i].start.date;
-
             //change date format
             var startDate = new Date(eventDate);
             var startEvent = (startDate.getDate() + "." + (startDate.getMonth() + 1) + "." + startDate.getFullYear());
-
             //appends list with the events
             var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' + eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
             eventlist.append(list);
+            $('#searchartist').val("");
         }
     }).catch(function (err) {
         console.log("secnd req: ", err);
         $('.warning').show();
+        $('#searchartist').val("");
     })
 }
 
