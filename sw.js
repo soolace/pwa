@@ -1,3 +1,4 @@
+//adds all these files to the cache
 this.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open('pwacache').then(function (cache) {
@@ -12,7 +13,9 @@ this.addEventListener('install', function (event) {
                     '/pwa/img/history.png',
                     '/pwa/img/powered-by-songkick-white.png',
                     '/pwa/img/sk-badge-pink.png',
-                    '/pwa/img/background.jpg'
+                    '/pwa/img/bg.jpg',
+                    '/pwa/favicon.ico',
+                    '/pwa/manifest.json'
                 ])
                 .catch(function (err) {
                     console.log("this in an error ", err);
@@ -21,8 +24,8 @@ this.addEventListener('install', function (event) {
     );
 });
 
+//gets the files from the cache
 this.addEventListener('fetch', function (event) {
-
     console.log(event.request.url);
     event.respondWith(
         caches.match(event.request).then(function (response) {

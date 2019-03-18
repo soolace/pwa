@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#F31C56"/>
     <title>sk-events</title>
@@ -13,19 +13,20 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-        <div class="wrapper">
+    <div class="wrapper">  
     <header>
-            <h3 class="first-headline">Find the next Events</h3>
+            <h3 class="first-headline">Find your next Concert or Festival</h3>
             <div class="searchline">
                 <input type="text" id="searchartist" placeholder="artistname">
-                <button id="searchbutton">search</button>  
-                <img id="lasts" src="img/history.png">
+                <button id="searchbutton">GO</button>  
+                <p id="lasts">History</p>
             </div> 
     </header>
         <div class="content">             
                 <ul class="last-searched"></ul>
                 <h3 class="headline">Upcoming Events of <span class="headline-artist"></span></h3>
-                <p class="beginningtext">search for upcoming events by artists like <span class="examples">Martin Garrix</span>, <span class="examples">Angerfist</span>, <span class="examples">Rammstein</span> and many more</p>
+                <p class="beginningtext">Do you want to know the next events of your favorite singer or band?
+                    search for upcoming events by artists like Martin Garrix, Angerfist, Rammstein and many more..</p>
                 <h4 class="warning">sorry, there is no event or we didn't find your artist (probably you're offline)</h4>
                 <ul class="events"></ul>
             </div>  

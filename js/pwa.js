@@ -1,61 +1,52 @@
 var searchedArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 var searchedItems = $('.last-searched');
 localStorage.setItem('items', JSON.stringify(searchedArray));
-const storaged = JSON.parse(localStorage.getItem('items'));
+var storaged = JSON.parse(localStorage.getItem('items'));
 
 
-$(document).ready(function () {
-    $('.last-searched').hide();
-    $('.warning').hide();
-    $('.headline').hide();
-    $('.beginningtext').show();
-})
-
-//search and replace spaces with dashes and tolowercase, put name in headline
+//search and set name in headline
 $('#searchbutton').click(function () {
     var artisttext = $('#searchartist').val();
     $('.headline').show();
     $('.headline-artist').html(artisttext);
-    artistModified = artisttext.replace(/\s+/g, '-').toLowerCase(); //not recessary, but useful for the worst case
+    artistModified = artisttext.replace(/\s+/g, '-').toLowerCase();
     console.log("text: ", artistModified);
-    findEventsByArtist(artistModified);
     //push the names in an array to save it in local storage for search history
     searchedArray.push(artisttext);
-    if (searchedArray.length > 10){
+    if (searchedArray.length > 5) {
         searchedArray.shift();
     }
     localStorage.setItem('items', JSON.stringify(searchedArray));
-    //show list with the searched names
+    //show list with the last 5 searched names
     var searchedNames = $('<li>').addClass('selectedHistory').html('<p>' + artisttext + '</p>');
     searchedItems.prepend(searchedNames);
-    $('.last-searched li').slice(10).hide(); //shows the latest 5 items
+    $('.last-searched li').slice(5).hide();
     $('.last-searched').hide();
     $('.beginningtext').hide();
+
+    findEventsByArtist(artistModified);
 })
-//creates the list when reload to see the history
+
+//creates the list when reload to see the history from localstorage
 storaged.forEach(function (item) {
     var searchedNames = $('<li>').addClass('selectedHistory').html('<p>' + item + '</p>');
     searchedItems.prepend(searchedNames);
 })
 
 //shows the history or hide when the button is clicked
-$('#lasts').click(function(){
+$('#lasts').click(function () {
     $('.last-searched').toggle();
 })
 
-//when a element from history is clicked, the search function will be called again
-$('.selectedHistory').click(function(){
+//when a element from history is clicked, the searchfield will be filled with his name again
+$('.selectedHistory').click(function () {
     var choosed = $(this).text();
+    console.log("ok, ", choosed);
     $('#searchartist').val(choosed);
     $('.last-searched').hide();
 })
 
-$('.examples').click(function(){
-    var choosedExample = $(this).text();
-    $('#searchartist').val(choosedExample);
-})
-
-//fetch to get the events
+//fetch to get the data
 var findEventsByArtist = function (artistname) {
     var artist = artistname;
     var getEvents = fetch('https://api.songkick.com/api/3.0/search/artists.json?apikey=AmrQIBJ7cwOMJaLm&query=' + artist + '', {
@@ -98,16 +89,16 @@ var findEventsByArtist = function (artistname) {
             var startEvent = (startDate.getDate() + "." + (startDate.getMonth() + 1) + "." + startDate.getFullYear());
 
             //appends list with the events
-            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p>' + eventLocation + '<br>' + "Type: " + eventType + '<br>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos');
+            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' + eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
             eventlist.append(list);
         }
-    }).catch(function(err){
-        console.log("secnd req: ",err);
+    }).catch(function (err) {
+        console.log("secnd req: ", err);
         $('.warning').show();
     })
 }
 
-
+//initialisation of service worker
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/pwa/sw.js', {
         scope: '/pwa/'
@@ -121,6 +112,7 @@ if ('serviceWorker' in navigator) {
     })
 }
 
+//message, if push notifications are allowed
 if ('Notification' in window && navigator.serviceWorker) {
     Notification.requestPermission(function (status) {
         console.log("Notification permission status:", status);
@@ -155,3 +147,12 @@ function displayNotification() {
         });
     }
 }
+
+//ready function
+$(document).ready(function () {
+    $('.last-searched').hide();
+    $('.warning').hide();
+    $('.headline').hide();
+    $('.beginningtext').show();
+
+})
