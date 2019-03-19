@@ -14,7 +14,8 @@ this.addEventListener('install', function (event) {
                     '/pwa/img/sk-badge-pink.png',
                     '/pwa/img/bg.jpg',
                     '/pwa/favicon.ico',
-                    '/pwa/manifest.json'
+                    '/pwa/manifest.json',
+                    '/pwa/img/404.jpg'
                 ])
                 .catch(function (err) {
                     console.log("this in an error ", err);
@@ -24,14 +25,25 @@ this.addEventListener('install', function (event) {
 });
 
 //gets the files from the cache
-this.addEventListener('fetch', function (event) {
+this.addEventListener('fetch', function(event) {
     console.log(event.request.url);
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-            return response || fetch(event.request);
-        })
-    );
-});
+   event.respondWith(caches.match(event.request).then(function(response) {
+     if (response !== undefined) {
+       return response;
+     } else {
+       return fetch(event.request).then(function (response) {
+         var responseClone = response.clone();
+         caches.open('pwacache').then(function (cache) {
+           cache.put(event.request, responseClone);
+         });
+         return response;
+       }).catch(function () {
+         return caches.match('/pwa/img/404.jpg');
+       });
+     }
+   }));
+ });
+
 
 
 //push notification

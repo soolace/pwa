@@ -28,6 +28,13 @@ $('#searchbutton').click(function () {
     getActiveHistory();
 })
 
+//trigger search button click event with enter
+$('#searchartist').keypress(function(e){
+    if(e.which == 13){
+        $('#searchbutton').click();
+    }
+})
+
 //creates the list when reload to see the history from localstorage
 storaged.forEach(function (item) {
     var searchedNames = $('<li>').addClass('selectedHistory').html('<p>' + item + '</p>');
