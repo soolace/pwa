@@ -102,7 +102,8 @@ var findEventsByArtist = function (artistname) {
             var startDate = new Date(eventDate);
             var startEvent = (startDate.getDate() + "." + (startDate.getMonth() + 1) + "." + startDate.getFullYear());
             //appends list with the events
-            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' + eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
+            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' + 
+            eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
             eventlist.append(list);
             $('#searchartist').val("");
         }
