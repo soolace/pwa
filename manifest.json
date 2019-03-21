@@ -1,19 +1,14 @@
 {
-    "name": "songkick events",
-    "short_name": "sk-events",
-    "start_url": "https://cyon.netlive.ch/pwa/",
-    "display": "standalone",
-    "background_color": "#F31C56",
-    "description": "get upcoming events",
-    "theme_color": "#F31C56",
-    "icons": [
-      {
-        "src": "img/sk-badge-pink.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  } 
-
-
-  
+  "name": "songkick events",
+  "short_name": "sk-events",
+  "start_url": "https://cyon.netlive.ch/pwa/",
+  "display": "standalone",
+  "background_color": "#F31C56",
+  "description": "get upcoming events",
+  "theme_color": "#F31C56",
+  "icons": [{
+    "src": "img/sk-badge-pink.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

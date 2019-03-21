@@ -29,8 +29,8 @@ $('#searchbutton').click(function () {
 })
 
 //trigger search button click event with enter
-$('#searchartist').keypress(function(e){
-    if(e.which == 13){
+$('#searchartist').keypress(function (e) {
+    if (e.which == 13) {
         $('#searchbutton').click();
     }
 })
@@ -53,12 +53,12 @@ $('.selectedHistory').click(function () {
     $('.last-searched').hide();
 })
 
-var getActiveHistory = function(){
-$('.activeHistory').click(function () {
-    var choosed2 = $(this).text();
-    $('#searchartist').val(choosed2);
-    $('.last-searched').hide();
-})
+var getActiveHistory = function () {
+    $('.activeHistory').click(function () {
+        var choosed2 = $(this).text();
+        $('#searchartist').val(choosed2);
+        $('.last-searched').hide();
+    })
 }
 
 //fetch to get the data
@@ -102,8 +102,8 @@ var findEventsByArtist = function (artistname) {
             var startDate = new Date(eventDate);
             var startEvent = (startDate.getDate() + "." + (startDate.getMonth() + 1) + "." + startDate.getFullYear());
             //appends list with the events
-            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' + 
-            eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
+            var list = $('<li>').addClass('single-event').html('<p class="name">' + eventName + '<br> ' + startEvent + '</p><p>' +
+                eventLocation + '</p><p>' + "Type: " + eventType + '</p><p>' + '<a class="link" href=' + eventUri + ' target="_blank">more infos' + '</p>');
             eventlist.append(list);
             $('#searchartist').val("");
         }
